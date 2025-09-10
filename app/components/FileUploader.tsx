@@ -64,7 +64,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
               </div>
               <p className="text-md text-gray-500">
                 <span className="font-semibold">Click to upload </span>
-                or drag and drop
+                or drag & drop
               </p>
               <p className="text-lg text-gray-500">
                 PDF(max {formatSize(20 * 1024 * 1024)})

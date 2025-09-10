@@ -60,7 +60,7 @@ const Upload = () => {
       companyName, jobTitle, jobDescription,
       feedback: '',
     }
-    await kv.set(`resume: ${uuid}`, JSON.stringify(data));
+    await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
     setStatusText('Analyzing...');
 
@@ -69,14 +69,16 @@ const Upload = () => {
     )
     if(!feedback) return setStatusText('Error: Failed to analyze resume');
 
-    const feedbackText = typeof feedback.message.content === 'string' 
-      ? feedback.message.content
-      : feedback.message.content[0].text;
+    const feedbackText =
+      typeof feedback.message.content === "string"
+        ? feedback.message.content
+        : feedback.message.content[0].text;
 
     data.feedback = JSON.parse(feedbackText);
-    await kv.set(`resume: ${uuid}`, JSON.stringify(data));
+    await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText('Analysis complete, redirecting...');
-    console.log(data)
+    
+    navigate(`/resume/${uuid}`);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -99,9 +101,9 @@ const Upload = () => {
       <Navbar />
 
       <section className="main-section">
-        <div className="page-heading py-4">
+        <div className="page-heading py-2">
           <h1>
-            Smart feedback <br /> for your dream job
+            Smart Feedback <br /> for your Dream Job
           </h1>
           {isProcessing ? (
             <>
@@ -112,52 +114,50 @@ const Upload = () => {
                 className="w-full"
               />
             </>
-          ) : (
-            <h2>Drop your Resume for an ATS score and improvement tips</h2>
-          )}
-          {!isProcessing && (
-            <form
-              id="upload-form"
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-4 mt-8"
-            >
-              <div className="form-div">
-                <label htmlFor="company-name">Company Name</label>
-                <input
-                  type="text"
-                  name="company-name"
-                  placeholder="Company Name"
-                  id="company-name"
-                />
-              </div>
-              <div className="form-div">
-                <label htmlFor="job-title">Job Title</label>
-                <input
-                  type="text"
-                  name="job-title"
-                  placeholder="Job Title"
-                  id="job-title"
-                />
-              </div>
-              <div className="form-div">
-                <label htmlFor="job-description">Job Description</label>
-                <textarea
-                  rows={5}
-                  name="job-description"
-                  placeholder="Job Description"
-                  id="job-description"
-                />
-              </div>
+          ) :  (
+          <form
+          id="upload-form"
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 mt-8"
+          >
+            <h2>Drop your Resume for an ATS Score & Improvement Tips</h2>
+            <div className="form-div">
+              <label htmlFor="company-name">Company Name</label>
+              <input
+                type="text"
+                name="company-name"
+                placeholder="Company Name"
+                id="company-name"
+              />
+            </div>
+            <div className="form-div">
+              <label htmlFor="job-title">Job Title</label>
+              <input
+                type="text"
+                name="job-title"
+                placeholder="Job Title"
+                id="job-title"
+              />
+            </div>
+            <div className="form-div">
+              <label htmlFor="job-description">Job Description</label>
+              <textarea
+                rows={5}
+                name="job-description"
+                placeholder="Job Description"
+                id="job-description"
+              />
+            </div>
 
-              <div className="form-div">
-                <label htmlFor="uploader">Upload Resume</label>
-                <FileUploader onFileSelect={handleFileSelect} />
-              </div>
+            <div className="form-div">
+              <label htmlFor="uploader">Upload Resume</label>
+              <FileUploader onFileSelect={handleFileSelect} />
+            </div>
 
-              <button className="primary-button" type="submit">
-                Analyze Resume
-              </button>
-            </form>
+            <button className="primary-button" type="submit">
+              Analyze Resume
+            </button>
+          </form>
           )}
         </div>
       </section>
