@@ -52,11 +52,11 @@ const Resume = () => {
 
   return (
     <main>
-      <nav className="resume-nav">
-        <Link to="/" className="back-button">
+      <nav className="resume-nav pt-0">
+        <Link to="/" className="back-button pt-0">
           <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
           <span className="text-gray-800 text-sm font-semibold">
-            Back to Home
+            Back to Homepage
           </span>
         </Link>
       </nav>
@@ -75,13 +75,14 @@ const Resume = () => {
             </div>
           )}
         </section>
+        <div className="w-px bg-gray-100" />
         <section className="feedback-section">
           <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
           {feedback ? (
             <div className="flex flex-col gap-8 animate-in fade-in duration-1000 ">
               <Summary feedback={feedback} />
               <ATS
-                score={feedback.ATS.score || 0}
+                score={feedback.overallScore || 0}
                 suggestions={feedback.ATS.tips || []}
               />
               <Details feedback={feedback} />
