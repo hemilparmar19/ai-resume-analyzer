@@ -111,7 +111,7 @@ const Upload = () => {
               <img
                 src="/images/resume-scan.gif"
                 alt="resume-scan"
-                className="w-full"
+                className="w-[700px]"
               />
             </>
           ) :  (

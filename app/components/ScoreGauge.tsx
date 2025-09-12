@@ -13,17 +13,17 @@ const ScoreGauge = ({ score }: { score: number }) => {
   }, []);
 
   // Decide colors based on score
-  const getGradientColors = () => {
-    if (score > 69) {
-      return { start: "#22c55e", end: "#86efac" }; // green shades
-    } else if (score > 49) {
-      return { start: "#eab308", end: "#fde68a" }; // yellow shades
-    } else {
-      return { start: "#ef4444", end: "#fca5a5" }; // red shades
-    }
-  };
+  // const getGradientColors = () => {
+  //   if (score > 69) {
+  //     return { start: "#22c55e", end: "#86efac" }; // green shades
+  //   } else if (score > 49) {
+  //     return { start: "#eab308", end: "#fde68a" }; // yellow shades
+  //   } else {
+  //     return { start: "#ef4444", end: "#fca5a5" }; // red shades
+  //   }
+  // };
 
-  const { start, end } = getGradientColors();
+  // const { start, end } = getGradientColors();
 
   return (
     <div className="flex flex-col items-center">
@@ -37,8 +37,8 @@ const ScoreGauge = ({ score }: { score: number }) => {
               x2="100%"
               y2="0%"
             >
-              <stop offset="0%" stopColor={start} />
-              <stop offset="100%" stopColor={end} />
+              <stop offset="0%" stopColor="#FF97AD" />
+              <stop offset="100%" stopColor="#5171FF" />
             </linearGradient>
           </defs>
 

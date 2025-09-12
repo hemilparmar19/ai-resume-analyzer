@@ -60,26 +60,26 @@ const Resume = () => {
           </span>
         </Link>
       </nav>
-      <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="feedback-section  h-[100vh] sticky top-0 items-center justify-center">
-          {imageUrl && resumeUrl && (
-            <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={imageUrl}
-                  alt="resume"
-                  className="w-full h-full object-contain rounded-2xl"
-                  title="resume"
-                />
-              </a>
-            </div>
-          )}
-        </section>
-        <div className="w-px bg-gray-100" />
-        <section className="feedback-section">
-          <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
-          {feedback ? (
+      {feedback ? (
+        <div className="flex flex-row w-full max-lg:flex-col-reverse">
+          <section className="feedback-section  h-[100vh] sticky top-0 items-center justify-center">
+            {imageUrl && resumeUrl && (
+              <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
+                <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={imageUrl}
+                    alt="resume"
+                    className="w-full h-full object-contain rounded-2xl"
+                    title="resume"
+                  />
+                </a>
+              </div>
+            )}
+          </section>
+          <div className="w-px bg-gray-100" />
+          <section className="feedback-section">
             <div className="flex flex-col gap-8 animate-in fade-in duration-1000 ">
+              <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
               <Summary feedback={feedback} />
               <ATS
                 score={feedback.overallScore || 0}
@@ -87,15 +87,17 @@ const Resume = () => {
               />
               <Details feedback={feedback} />
             </div>
-          ) : (
-            <img
-              src="/images/resume-scan-2.gif"
-              alt="resume"
-              className="w-full"
-            />
-          )}
-        </section>
-      </div>
+          </section>
+        </div>
+      ) : (
+        <div className="flex min-h-screen w-full items-center justify-center">
+          <img
+            src="/images/resume-scan-2.gif"
+            alt="resume"
+            className="w-[800px]"
+          />
+        </div>
+      )}
     </main>
   );
 };
